@@ -7,6 +7,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>AAU Anesthesia Portal</title>
 <meta name="theme-color" content="#2563EB">
+<meta name="description" content="Official AAU Anesthesia student portal — courses, ECTS, study resources and an AI tutor, available offline.">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Anesthesia Portal">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;0,9..144,800;1,9..144,600&display=swap" rel="stylesheet">
 <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
@@ -1845,6 +1852,17 @@ window.addEventListener('load', function() {
   }, 1500);
   showToast('success', 'Welcome back!', 'Portal loaded — all modules ready to study.', 3200);
 });
+
+// ═══════════════════════════════════════════
+// PWA — SERVICE WORKER REGISTRATION (offline support)
+// ═══════════════════════════════════════════
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('service-worker.js')
+      .then(reg => console.log('Service worker registered:', reg.scope))
+      .catch(err => console.warn('Service worker registration failed:', err));
+  });
+}
 </script>
 </body>
 </html>
